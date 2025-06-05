@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Principal Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Principal!</h1>
+
+    <h2>All Students</h2>
+    <ul>
+        {% for student in students %}
+            <li>{{ student.name }} - {{ student.enrollment_number }}</li>
+        {% empty %}
+            <li>No students found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>All Teachers</h2>
+    <ul>
+        {% for teacher in teachers %}
+            <li>{{ teacher.name }} - {{ teacher.department }}</li>
+        {% empty %}
+            <li>No teachers found.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>All Courses</h2>
+    <ul>
+        {% for course in courses %}
+            <li>{{ course.name }} ({{ course.code }})</li>
+        {% empty %}
+            <li>No courses found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

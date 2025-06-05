@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Student!</h1>
+    <p>Here are your details:</p>
+    <!-- Display student-specific info -->
+    <ul>
+        <li>Name: {{ request.user.profile.student.name }}</li>
+        <li>Enrollment Number: {{ request.user.profile.student.enrollment_number }}</li>
+        <li>Courses Enrolled:</li>
+        <ul>
+            {% for course in request.user.profile.student.courses.all %}
+                <li>{{ course.name }} ({{ course.code }})</li>
+            {% empty %}
+                <li>No courses enrolled.</li>
+            {% endfor %}
+        </ul>
+    </ul>
+</body>
+</html>

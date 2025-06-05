@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Teacher Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, Teacher!</h1>
+    <p>Your timetable:</p>
+    <ul>
+        {% for slot in request.user.profile.teacher.timetable.all %}
+            <li>{{ slot.day }} - {{ slot.start_time }} to {{ slot.end_time }} : {{ slot.course.name }}</li>
+        {% empty %}
+            <li>No timetable assigned.</li>
+        {% endfor %}
+    </ul>
+
+    <p>Courses you teach:</p>
+    <ul>
+        {% for course in request.user.profile.teacher.courses.all %}
+            <li>{{ course.name }} ({{ course.code }})</li>
+        {% empty %}
+            <li>No courses assigned.</li>
+        {% endfor %}
+    </ul>
+
+    <p>Students enrolled in your courses:</p>
+    <ul>
+        {% for course in request.user.profile.teacher.courses.all %}
+            <li>{{ course.name }}:
+                <ul>
+                    {% for student in course.students.all %}
+                        <li>{{ student.name }}</li>
+                    {% empty %}
+                        <li>No students enrolled.</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% empty %}
+            <li>No courses assigned.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
